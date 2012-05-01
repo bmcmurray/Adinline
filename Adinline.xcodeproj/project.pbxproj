@@ -23,8 +23,8 @@
 /* Begin PBXBuildFile section */
 		2A07206F12FCF2FE0050B027 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A07206E12FCF2FE0050B027 /* Cocoa.framework */; };
 		2AC004CD12FD076500EC0A2F /* MGMAdinline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC004CC12FD076500EC0A2F /* MGMAdinline.m */; };
-		2AC004D512FD8D5000EC0A2F /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC004D412FD8D5000EC0A2F /* Adium.framework */; };
 		2ADAC3A912FCF7F700E0629F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2ADAC3A612FCF7F700E0629F /* InfoPlist.strings */; };
+		B1193C97155052E0003A0852 /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1193C96155052E0003A0852 /* Adium.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +45,10 @@
 		2A07207312FCF2FE0050B027 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2AC004CB12FD076500EC0A2F /* MGMAdinline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMAdinline.h; sourceTree = "<group>"; };
 		2AC004CC12FD076500EC0A2F /* MGMAdinline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMAdinline.m; sourceTree = "<group>"; };
-		2AC004D412FD8D5000EC0A2F /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Adium.framework; path = "../../../Users/grmrgecko/Library/Developer/Xcode/DerivedData/Adium-gciovdnwphndewdypqlkgwdqtpun/Build/Products/Debug/Adium.framework"; sourceTree = "<group>"; };
 		2ADAC39912FCF78600E0629F /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = Classes/prefix.pch; sourceTree = "<group>"; };
 		2ADAC3A712FCF7F700E0629F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2ADAC3AB12FCF80100E0629F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1193C96155052E0003A0852 /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Adium.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A07206F12FCF2FE0050B027 /* Cocoa.framework in Frameworks */,
-				2AC004D512FD8D5000EC0A2F /* Adium.framework in Frameworks */,
+				B1193C97155052E0003A0852 /* Adium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,6 @@
 		2A07206D12FCF2FE0050B027 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2AC004D412FD8D5000EC0A2F /* Adium.framework */,
 				2A07206E12FCF2FE0050B027 /* Cocoa.framework */,
 				2A07207012FCF2FE0050B027 /* Other Frameworks */,
 			);
@@ -96,6 +95,7 @@
 		2A07207012FCF2FE0050B027 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1193C96155052E0003A0852 /* Adium.framework */,
 				2A07207112FCF2FE0050B027 /* AppKit.framework */,
 				2A07207212FCF2FE0050B027 /* CoreData.framework */,
 				2A07207312FCF2FE0050B027 /* Foundation.framework */,
@@ -242,9 +242,11 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				WRAPPER_EXTENSION = AdiumPlugin;
 			};
 			name = Debug;
 		};
@@ -273,7 +275,10 @@
 					x86_64,
 				);
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(ADIUM)/build/Debug/\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(ADIUM)/build/Debug/\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -311,7 +316,10 @@
 				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(ADIUM)/build/Debug/\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(ADIUM)/build/Debug/\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/prefix.pch;
@@ -378,6 +386,7 @@
 				2A33161F13019B4300DFD907 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
