@@ -66,7 +66,7 @@ NSString * const MGMAIAllowStrangers = @"MGMAIAllowStrangers";
 					tagRange.length = [link length]-tagRange.location;
 				}
 				if ([imageExtensions containsObject:[[[[NSURL URLWithString:link] path] pathExtension] lowercaseString]]) {
-					NSString *image = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"%@\" style=\"max-width: 100%%; max-height: 100%%;\" onLoad=\"alignChat(nearBottom());\" onClick=\"imageSwap(this); return false;\" />", link, link];
+					NSString *image = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"%@\" style=\"max-width: 100%%; max-height: 100%%;\" onLoad=\"alignChat(nearBottom());\" onclick=\"(function(that) { var link = document.createTextNode(that.alt); var clickLink = function(e) { window.event.cancelBubble = true; that.hidden = false; e.target.removeChild(link); return false; }; window.event.cancelBubble = true; that.parentElement.onclick = clickLink; that.parentElement.appendChild(link); that.hidden = true; return false; })(this); return false;\" />", link, link];
 					NSRange replaceRange = NSMakeRange(linkStartRange.location+linkStartRange.length, linkReplaceEndRange.location-(linkStartRange.location+linkStartRange.length));
 					[html replaceCharactersInRange:replaceRange withString:image];
 					range.location += [image length]-replaceRange.length;
